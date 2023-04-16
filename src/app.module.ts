@@ -3,7 +3,6 @@ import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Product } from './products/product.entity';
-// import { CorsMiddleware } from './middleware/cors.middleware';
 
 @Module({
   imports: [
@@ -14,11 +13,11 @@ import { Product } from './products/product.entity';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
-        const isProduction = configService.get('STAGE') ==='prod';        
+        const isProduction = configService.get('STAGE') === 'prod';
         return {
           ssl: isProduction,
           extra: {
-            ssl: isProduction ? { rejectUnauthorized: false} : null,
+            ssl: isProduction ? { rejectUnauthorized: false } : null,
           },
           type: 'postgres',
           entities: [Product],
@@ -29,7 +28,6 @@ import { Product } from './products/product.entity';
           username: configService.get('DB_USERNAME'),
           password: configService.get('DB_PASSWORD'),
           database: configService.get('DB_DATABASE'),
-          // url: configService.get('DB_URL')
         };
       },
     }),
@@ -38,8 +36,4 @@ import { Product } from './products/product.entity';
   controllers: [],
   providers: [],
 })
-export class AppModule {
-  // configure(consumer: MiddlewareConsumer) {
-  //   consumer.apply(CorsMiddleware).forRoutes('*'); // Register CorsMiddleware as a global middleware for all routes
-  // }
-}
+export class AppModule {}
