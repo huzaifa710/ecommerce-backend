@@ -7,7 +7,7 @@ async function bootstrap() {
 
   // Enable CORS with custom options
   const corsOptions: cors.CorsOptions = {
-    origin: 'http://localhost:4200', // Set allowed origins
+    origin: 'https://main--comforting-chimera-42be6c.netlify.app', // Set allowed origins
     methods: 'GET, POST, PUT, DELETE', // Set allowed methods
     allowedHeaders: 'Content-Type, Authorization', // Set allowed headers
   };
